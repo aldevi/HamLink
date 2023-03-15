@@ -31,7 +31,7 @@ clean :
 	$(Q) rm -f bin/*
 
 archive :
-	tar -czvf $(ARCHIVE) *.pi
+	tar -czvf $(ARCHIVE) bin/*.pi
 
 # --- Librairies --- #
 $(BIN)/fenetre.pc.o : $(LIBS)/fenetre.c
