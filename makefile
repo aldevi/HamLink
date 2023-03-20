@@ -1,9 +1,9 @@
 # --- Paramètres --- #
 LIBS=libs
 BIN=bin
-MENU=menu
-PREFIX=
+HAMLINK=HamLink
 CC=/usr/bin/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc-4.8.3
+OPT=-std=c99
 SSH_USER=pi
 SSH_IP=172.24.1.1
 SSH_DESTDIR=/opt/HamLink
@@ -22,9 +22,9 @@ endif
 # --- Général --- #
 all : pc pi
 
-pc : $(BIN)/menu.pc
+pc : $(BIN)/HamLink.pc
 
-pi : $(BIN)/menu.pi
+pi : $(BIN)/HamLink.pi
 
 clean :
 	@ echo "[Clean]"
@@ -35,17 +35,17 @@ archive :
 
 # --- Librairies --- #
 $(BIN)/fenetre.pc.o : $(LIBS)/fenetre.c
-	$(Q) gcc -c $^ -o $@ -lncurses
+	$(Q) gcc -c $^ -o $@ -lncurses -lmenu
 
 $(BIN)/fenetre.pi.o : $(LIBS)/fenetre.c
-	$(Q) $(CC) $(PI_CFLAGS) $(PI_LDFLAGS) -c $^ -o $@ -lncurses
+	$(Q) $(CC) $(OPT) $(PI_CFLAGS) $(PI_LDFLAGS) -c $^ -o $@ -lncurses -lmenu
 
 # --- Programme --- #
-$(BIN)/menu.pc : $(MENU)/menu.c $(BIN)/fenetre.pc.o
-	$(Q) gcc $^ -o $@ -lncurses
+$(BIN)/HamLink.pc : $(HAMLINK)/HamLink.c $(BIN)/fenetre.pc.o
+	$(Q) gcc $^ -o $@ -lncurses -lmenu
 
-$(BIN)/menu.pi : $(MENU)/menu.c $(BIN)/fenetre.pi.o
-	$(Q) $(CC) $(PI_CFLAGS) $(PI_LDFLAGS) $^ -o $@ -lncurses
+$(BIN)/HamLink.pi : $(HAMLINK)/HamLink.c $(BIN)/fenetre.pi.o
+	$(Q) $(CC) $(OPT) $(PI_CFLAGS) $(PI_LDFLAGS) $^ -o $@ -lncurses -lmenu
 
 # --- SSH --- #
 install : archive
