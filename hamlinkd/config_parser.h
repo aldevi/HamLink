@@ -40,4 +40,25 @@ typedef struct {
     char audio_device[32];
 } hamlinkd_config;
 
+/**
+ * \brief Parse the configuration file and store the values in the config struct
+ * 
+ * \param config 
+ */
+void hamlinkd_parse_config(hamlinkd_config* config);
+
+/**
+ * \brief Print the configuration to stdout
+ * 
+ * \param config 
+ */
+void hamlinkd_print_config(hamlinkd_config* config);
+
+/**
+ * \brief Save the configuration to the configuration file
+ * 
+ * \param config 
+ */
+void hamlinkd_save_config(hamlinkd_config* config);
+
 #endif
