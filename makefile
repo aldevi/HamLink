@@ -5,7 +5,7 @@ HAMLINK=HamLink
 CC=/usr/bin/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc-4.8.3
 OPT=-std=c99
 SSH_USER=pi
-SSH_IP=172.24.2.1
+SSH_IP=172.24.1.1
 SSH_DESTDIR=/opt/HamLink
 ARCHIVE=archive.tar.gz
 

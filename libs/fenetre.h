@@ -109,3 +109,5 @@ void monterMenu(menu_t * menu);
  * @param menu Menu concerné
  */
 void refreshMenu(menu_t * menu);
+
+char * suppr_espaces(char * chan,char cara);

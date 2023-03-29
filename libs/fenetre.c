@@ -113,6 +113,7 @@ formulaire_t * creerFormulaire(int hauteur, int largeur, int x, int y, char * ti
         set_field_back(formulaire->champs[i], A_UNDERLINE);
         field_opts_off(formulaire->champs[i], O_AUTOSKIP);
         set_field_buffer(formulaire->champs[i], 0, lignes[i].description);
+    
     }
 
     // On ajoute un champ vide pour terminer la liste
@@ -250,4 +251,19 @@ void refreshMenu(menu_t * menu) {
     mvwprintw(menu->fenetre, menu->hauteur-1, 4, "F1 : Retour");
     post_menu(menu->menu);
     wrefresh(menu->fenetre);
+}
+
+char * suppr_espaces(char * chan, char cara) {
+    char * ptc = chan;
+    size_t len, len0; 
+
+    len0=len=strlen(ptc); 
+    
+    while(len>0 && ptc[--len]==' ')
+        ptc[len]='\0';
+
+    if (len && ++len<len0) 
+        ptc[len]=cara;
+        
+    return chan; 
 }
