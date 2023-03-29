@@ -40,11 +40,17 @@ $(BIN)/fenetre.pc.o : $(LIBS)/fenetre.c
 $(BIN)/fenetre.pi.o : $(LIBS)/fenetre.c
 	$(Q) $(CC) $(OPT) $(PI_CFLAGS) $(PI_LDFLAGS) -c $^ -o $@ -lncurses -lmenu -lform
 
+$(BIN)/config_parser.pc.o : $(LIBS)/config_parser.c
+	$(Q) gcc -c $^ -o $@
+
+$(BIN)/config_parser.pi.o : $(LIBS)/config_parser.c
+	$(Q) $(CC) $(OPT) $(PI_CFLAGS) $(PI_LDFLAGS) -c $^ -o $@
+
 # --- Programme --- #
-$(BIN)/HamLink.pc : $(HAMLINK)/HamLink.c $(BIN)/fenetre.pc.o
+$(BIN)/HamLink.pc : $(HAMLINK)/HamLink.c $(BIN)/fenetre.pc.o $(BIN)/config_parser.pc.o
 	$(Q) gcc $^ -o $@ -lncurses -lmenu -lform
 
-$(BIN)/HamLink.pi : $(HAMLINK)/HamLink.c $(BIN)/fenetre.pi.o
+$(BIN)/HamLink.pi : $(HAMLINK)/HamLink.c $(BIN)/fenetre.pi.o $(BIN)/config_parser.pi.o
 	$(Q) $(CC) $(OPT) $(PI_CFLAGS) $(PI_LDFLAGS) $^ -o $@ -lncurses -lmenu -lform
 
 # --- SSH --- #
