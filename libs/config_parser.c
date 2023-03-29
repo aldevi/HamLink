@@ -67,7 +67,7 @@ void hamlinkd_parse_config(hamlinkd_config* config) {
 }
 
 void hamlinkd_save_config(hamlinkd_config* config) {
-    FILE* fp = fopen("/home/alexis/RPI/hamlinkdconf.test", "w");
+    FILE* fp = fopen(CONFIG_FILE, "w");
     if (fp == NULL) {
         printf("Error opening file\n");
         exit(1);
